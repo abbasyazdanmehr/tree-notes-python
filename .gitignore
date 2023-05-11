@@ -1,3 +1,7 @@
 
 
 tests.py
+.gitignore
+
+__pycache__/
+.vscode/
