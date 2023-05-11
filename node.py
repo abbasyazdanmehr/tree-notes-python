@@ -6,6 +6,6 @@ class Node:
         self.children = []
         
     def __repr__(self) -> str:
-        return "Node: key=" + str(self.key) + \
-    ", title=" + self.title
+        return " #" + str(self.key) + \
+    " - " + self.title
     

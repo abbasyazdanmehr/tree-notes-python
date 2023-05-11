@@ -1,9 +1,11 @@
-
-from node import Node
 import time
+
+import paths
+from node import Node
 
 class Tree:
     searched = None
+    all_keys = []
     sep = '`'
     def __init__(self, name, node) -> None:
         self.name = name
@@ -28,9 +30,9 @@ class Tree:
             self.searched = node
             
         for i in node.children:    
-            self.search(i, searching)
+            self.search_parent(i, searching)
     
-    def search_by_key(self, node, searching:int): 
+    def search_by_key(self, node:Node, searching:int): 
         if node == None:
             return None
     
@@ -38,7 +40,7 @@ class Tree:
             self.searched = node
             
         for i in node.children:    
-            self.search(i, searching)
+            self.search_by_key(i, searching)
     
     def get_node(self, node):
         self.searched = None
@@ -50,24 +52,26 @@ class Tree:
         self.search_parent(self.root, node)
         return self.searched
     
-    def get_node_by_key(self, node):
+    def get_node_by_key(self, key):
         self.searched = None
-        self.search_by_key(self.root, node.key)
+        self.search_by_key(self.root, key)
         return self.searched
     
     def insert(self, parent, node):
         searched_parent = self.get_node(parent)
         if searched_parent == None:
             print("not found parent")
-            return None
+            return False
         searched_parent.children.append(node)
+        return True
         
     def insert_by_parent_key(self, parent_key, node):
         searched_parent = self.get_node_by_key(parent_key)
         if searched_parent == None:
             print("not found parent")
-            return None
+            return False
         searched_parent.children.append(node)
+        return True
         
     def cascade_delete(self, node, searching):
         if node == None:
@@ -75,7 +79,7 @@ class Tree:
     
         for i in node.children:
             if i == searching:    
-                node.children.remove(node)
+                node.children.remove(i)
                 return None
             self.cascade_delete(i, searching)
             
@@ -92,7 +96,7 @@ class Tree:
             self.delete(i, searching)
     
     def write_tree_in_file(self):
-        f = open(self.name+".txt", 'w')
+        f = open(paths.trees_path + self.name + ".txt", 'w')
         self.str_file = ''
         self.set_str_file(self.root)
         f.write(self.str_file)
@@ -108,10 +112,23 @@ class Tree:
                 
         for i in node.children:    
             self.set_str_file(i)
+    
+    def find_all_keys(self, node:Node): 
+        self.all_keys.append(node.key)
+        if node == None:
+            return None
+            
+        for i in node.children:    
+            self.find_all_keys(i)
+    
+    def get_all_keys(self):
+        self.all_keys = []
+        self.find_all_keys(self.root)
+        return self.all_keys
         
     
 def read_tree_from_file(tree_name:str) -> Tree:
-    f = open(tree_name + ".txt", 'r')
+    f = open(paths.trees_path + tree_name + ".txt", 'r')
     
     fs = f.read().split(Tree.sep)
     
