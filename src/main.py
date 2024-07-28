@@ -7,7 +7,6 @@ from models.node import Node
 from models.tree import print_visual, read_tree_from_file
 from views.view_menu import print_menu
 from constants import REPRESENT_APP_NAME
-from models.menu import Menu
 
 def new_node(keys):
     print()
