@@ -4,15 +4,9 @@ import paths
 from tree import Tree
 from node import Node
 from tree import print_visual, read_tree_from_file
+from views.menu import print_menu
+from constants import REPRESENT_APP_NAME
 
-
-def print_menu():
-    print()
-    print("---- Tree Notes ----")
-    print("1. view all trees")
-    print("2. new tree")
-    print("3. exit")
-    print()
 
 
 def new_node(keys):
@@ -191,7 +185,7 @@ def new_tree():
 
 def main_loop():
     while True:
-        print_menu()
+        print_menu(REPRESENT_APP_NAME, ['view all trees', 'new tree'])
         print("- Choose by number: ", end='')
 
         command = input()
