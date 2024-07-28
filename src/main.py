@@ -1,13 +1,11 @@
 import os
+
 import paths
-
-from tree import Tree
-from node import Node
-from tree import print_visual, read_tree_from_file
-from views.menu import print_menu
+from models.tree import Tree
+from models.node import Node
+from models.tree import print_visual, read_tree_from_file
+from views.view_menu import print_menu
 from constants import REPRESENT_APP_NAME
-
-
 
 def new_node(keys):
     print()

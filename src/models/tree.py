@@ -1,7 +1,7 @@
 import time
-import paths
 
-from node import Node
+import paths
+from .node import Node
 
 class Tree:
     searched = None
