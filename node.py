@@ -1,8 +1,8 @@
 class Node:
-    def __init__(self, key, title='', description='') -> None:
+    def __init__(self, key, title='', content='') -> None:
         self.key = key
         self.title = title
-        self.description = description
+        self.content = content
         self.children = []
         
     def __repr__(self) -> str:

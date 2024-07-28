@@ -1,6 +1,6 @@
 import os
-
 import paths
+
 from tree import Tree
 from node import Node
 from tree import print_visual, read_tree_from_file
@@ -21,23 +21,23 @@ def new_node(keys):
 
     while True:
         print('- key(must be number): ', end='')
-        my_key = int(input())
+        in_key = int(input())
 
-        if my_key == -1:
+        if in_key == -1:
             return
 
-        if not (my_key in keys):
+        if not (in_key in keys):
             break
         else:
             print("key exists")
 
     print('- title: ', end='')
-    my_title = input()
+    in_title = input()
 
-    print('- description: ', end='')
-    my_description = input()
+    print('- content: ', end='')
+    in_content = input()
 
-    return Node(my_key, my_title, my_description)
+    return Node(in_key, in_title, in_content)
 
 
 def edit_node():
@@ -45,12 +45,12 @@ def edit_node():
     print("$ Node: ")
 
     print('- title: ', end='')
-    my_title = input()
+    in_title = input()
 
-    print('- description: ', end='')
-    my_description = input()
+    print('- content: ', end='')
+    in_content = input()
 
-    return Node(-1, my_title, my_description)
+    return Node(-1, in_title, in_content)
 
 
 def view_tree(tree_name):
@@ -94,7 +94,7 @@ def view_tree(tree_name):
                 else:
                     temp_node = edit_node()
                     my_node.title = temp_node.title
-                    my_node.description = temp_node.description
+                    my_node.content = temp_node.content
                     print("success!")
 
             elif command == '3':
@@ -179,14 +179,14 @@ def new_tree():
             print("tree name already exists!")
             print()
 
-    my_root = Node(0, 'sample subject', 'sample description')
-    my_tree = Tree(tree_name, my_root)
+    sample_root = Node(0, 'sample subject', 'sample content')
+    sample_tree = Tree(tree_name, sample_root)
 
     print()
     print("Are you shure to create? (yes) ", end='')
     command = input()
     if command == 'yes':
-        my_tree.write_tree_in_file()
+        sample_tree.write_tree_in_file()
 
 
 def main_loop():

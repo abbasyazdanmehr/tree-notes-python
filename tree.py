@@ -1,6 +1,6 @@
 import time
-
 import paths
+
 from node import Node
 
 class Tree:
@@ -107,7 +107,7 @@ class Tree:
             return None
         
         self.str_file += str(node.key) + Tree.sep + \
-            node.title + Tree.sep + node.description + Tree.sep + \
+            node.title + Tree.sep + node.content + Tree.sep + \
                 str(len(node.children)) + Tree.sep
                 
         for i in node.children:    
@@ -148,9 +148,9 @@ def make_tree(node:Node, tree_strs:list):
     
     key = int(tree_strs[0])
     title = tree_strs[1]
-    description = tree_strs[2]
+    content = tree_strs[2]
     children_count = int(tree_strs[3])
-    child = Node(key, title, description)
+    child = Node(key, title, content)
     node.children.append(child)
     
     for _ in range(4):
